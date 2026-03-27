@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIコミュニティ構想 市場調査レポート</title>
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --accent: #e94560;
+      --accent2: #0f3460;
+      --accent3: #533483;
+      --light: #f8f9fa;
+      --muted: #6c757d;
+      --border: #dee2e6;
+      --success: #28a745;
+      --warning: #fd7e14;
+      --info: #17a2b8;
+      --card-bg: #ffffff;
+      --section-bg: #f4f6fb;
+      --blue: #0f3460;
+      --purple: #533483;
+      --gold: #f9ca24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      background: var(--section-bg);
+      color: #222;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 60%, var(--accent3) 100%);
+      color: white;
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .hero-label {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero .subtitle {
+      font-size: 1.05rem;
+      opacity: 0.85;
+      margin-bottom: 30px;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+
+    /* Layout */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 50px 0; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+    .section-number {
+      background: var(--accent);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    th {
+      background: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:nth-child(even) { background: #f8f9fb; }
+    tr:hover { background: #eef1f7; }
+
+    /* Tags */
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin: 2px;
+    }
+    .tag-free { background: #d4edda; color: #155724; }
+    .tag-low { background: #d1ecf1; color: #0c5460; }
+    .tag-mid { background: #fff3cd; color: #856404; }
+    .tag-high { background: #f8d7da; color: #721c24; }
+    .tag-sub { background: #e2d6f3; color: #3d1f6d; }
+    .tag-blue { background: #cce5ff; color: #004085; }
+    .tag-green { background: #d4edda; color: #155724; }
+    .tag-red { background: #f8d7da; color: #721c24; }
+    .tag-gold { background: #fff3cd; color: #856404; }
+    .tag-purple { background: #e2d6f3; color: #3d1f6d; }
+
+    /* Highlight boxes */
+    .highlight-box {
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .highlight-blue {
+      background: linear-gradient(135deg, #e8f4fd, #d6eaf8);
+      border-left: 5px solid var(--accent2);
+    }
+    .highlight-green {
+      background: linear-gradient(135deg, #e8f8e8, #d4edda);
+      border-left: 5px solid var(--success);
+    }
+    .highlight-gold {
+      background: linear-gradient(135deg, #fef9e7, #fff3cd);
+      border-left: 5px solid var(--gold);
+    }
+    .highlight-red {
+      background: linear-gradient(135deg, #fde8ea, #f8d7da);
+      border-left: 5px solid var(--accent);
+    }
+    .highlight-purple {
+      background: linear-gradient(135deg, #f0e6f6, #e2d6f3);
+      border-left: 5px solid var(--accent3);
+    }
+    .highlight-box h4 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    .highlight-box ul { margin-left: 20px; }
+    .highlight-box li { margin-bottom: 6px; }
+
+    /* Price matrix */
+    .price-band {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 16px 0;
+    }
+    .price-label {
+      padding: 14px 16px;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .price-content {
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* Comparison chart */
+    .model-comparison {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .model-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid var(--border);
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .model-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .model-card.recommended {
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(233,69,96,0.15);
+    }
+    .model-card h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .model-card .price {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 8px 0;
+    }
+    .model-card ul {
+      text-align: left;
+      margin: 12px 0 0 16px;
+      font-size: 13px;
+    }
+    .model-card li { margin-bottom: 4px; }
+
+    /* Gap analysis */
+    .gap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .gap-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 2px solid var(--border);
+      position: relative;
+    }
+    .gap-card.hot {
+      border-color: var(--accent);
+    }
+    .gap-card.hot::after {
+      content: 'HOT';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--accent);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 8px;
+    }
+    .gap-card h4 {
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .gap-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* Quadrant */
+    .quadrant {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 2px;
+      background: var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    .quadrant-cell {
+      background: white;
+      padding: 20px;
+    }
+    .quadrant-cell h4 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    .quadrant-cell ul {
+      margin-left: 16px;
+      font-size: 13px;
+    }
+    .quadrant-cell li { margin-bottom: 4px; }
+    .quadrant-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      padding: 6px;
+      background: var(--light);
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 40px;
+      margin: 20px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent3));
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+      background: white;
+      border-radius: 10px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -32px;
+      top: 20px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-item .date {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .timeline-item h4 {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+    .timeline-item p {
+      font-size: 13px;
+      color: #555;
+    }
+
+    /* Scoring */
+    .score-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0;
+    }
+    .score-bar .label {
+      width: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: right;
+    }
+    .score-bar .bar {
+      flex: 1;
+      height: 18px;
+      background: #eee;
+      border-radius: 9px;
+      overflow: hidden;
+    }
+    .score-bar .fill {
+      height: 100%;
+      border-radius: 9px;
+      transition: width 0.3s;
+    }
+    .score-bar .value {
+      width: 30px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 30px;
+      font-size: 13px;
+    }
+
+    /* Utility */
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .small-text { font-size: 12px; color: var(--muted); }
+    .bold { font-weight: 700; }
+    .mt-20 { margin-top: 20px; }
+    .mb-10 { margin-bottom: 10px; }
+    .text-accent { color: var(--accent); }
+    .text-center { text-align: center; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 40px 20px 30px; }
+      .hero h1 { font-size: 1.6rem; }
+      .card-grid { grid-template-columns: 1fr; }
+      .model-comparison { grid-template-columns: 1fr; }
+      .gap-grid { grid-template-columns: 1fr; }
+      .quadrant { grid-template-columns: 1fr; }
+      .price-band { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- HERO -->
+<!-- ============================================ -->
+<header class="hero">
+  <div class="hero-label">MARKET RESEARCH REPORT</div>
+  <h1>養豚×AI<span>コミュニティ</span>構想<br>市場調査 & 空白地帯分析</h1>
+  <p class="subtitle">鈴木さんとの再相談に向けた意思決定材料 ── 既存市場の全体像・成功パターン・介在余地を整理</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">調査日: 2026年3月27日</div>
+    <div class="hero-meta-item">対象: AIスクール / コミュニティ / プラットフォーム講座</div>
+    <div class="hero-meta-item">目標: 4月末ローンチ</div>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ============================================ -->
+<!-- SECTION 1: 市場全体像 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div class="section-title">AI教育市場の全体像</div>
+  </div>
+
+  <div class="highlight-box highlight-blue">
+    <h4>市場規模サマリー</h4>
+    <ul>
+      <li><strong>グローバルAI教育市場:</strong> 2025年 約75億ドル → 2030年 約425億ドル（CAGR 40.9%）</li>
+      <li><strong>国内eラーニング市場:</strong> 2025年 約4,000億円規模</li>
+      <li><strong>スマート酪農・畜産市場（国内）:</strong> 2027年度 132.5億円（2022年度比114.3%）</li>
+      <li><strong>養豚×AI教育に特化したスクール:</strong> <span class="bold text-accent">現時点でゼロ（完全な空白地帯）</span></li>
+    </ul>
+  </div>
+
+  <!-- 価格帯マトリクス -->
+  <div class="card">
+    <h3>AI教育サービス 価格帯マトリクス</h3>
+
+    <div class="price-band">
+      <div class="price-label" style="background:#d4edda; color:#155724;">無料</div>
+      <div class="price-content">
+        <strong>Google Prompting Essentials</strong>（10h、認定証付き）/ <strong>Coursera Google Cloud AI入門</strong> / <strong>fast.ai</strong>（世界最長DLコース）/ <strong>YouTube</strong> / <strong>CDLE</strong>（JDLA資格合格者限定、7万人）
+      </div>
+    </div>
+    <div class="price-band">
+      <div class="price-label" style="background:#d1ecf1; color:#0c5460;">~5,000円/月</div>
+      <div class="price-content">
+        <strong>Schoo</strong>（月980円見放題）/ <strong>AGIラボ</strong>（月3,980円、Discord）/ <strong>ディープロ</strong>（月1,010~4,980円）/ <strong>Udemy</strong>（セール時1,200~2,400円/講座）/ <strong>Brain・note</strong>（数百~数千円/記事）/ <strong>ストアカ</strong>（1回1,000~10,000円）
+        <br><span class="small-text">→ <strong>佐藤・鈴木構想のSlackコミュニティ月額3,000~5,000円はこの帯</strong></span>
+      </div>
+    </div>
+    <div class="price-band">
+      <div class="price-label" style="background:#fff3cd; color:#856404;">1~5万円</div>
+      <div class="price-content">
+        <strong>MENTA</strong>（平均月1.4万円）/ <strong>DMM 生成AI CAMP</strong>（月14,800円）/ <strong>SHIFT AI</strong>（月21,780円）/ <strong>松尾研 AI Business Insights</strong>（33,000円ワンショット）/ <strong>Udemy</strong>（通常価格10,000~27,800円）
+      </div>
+    </div>
+    <div class="price-band">
+      <div class="price-label" style="background:#f8d7da; color:#721c24;">5~20万円</div>
+      <div class="price-content">
+        <strong>侍エンジニア 生成AIコース</strong>（4週間193,050円）/ <strong>テックアカデミー AIコース</strong>（4週149,600円~）/ <strong>スキルアップAI E資格</strong>（55,000~165,000円）
+        <br><span class="small-text">→ <strong>佐藤・鈴木構想の1日セミナー10万~20万円はこの帯</strong></span>
+      </div>
+    </div>
+    <div class="price-band">
+      <div class="price-label" style="background:#e2d6f3; color:#3d1f6d;">20万円~</div>
+      <div class="price-content">
+        <strong>Aidemy Premium</strong>（3ヶ月528,000円 → 給付金で実質~11万円）/ <strong>キカガク</strong>（792,000円 → 実質158,400円）/ <strong>Reforge</strong>（年$1,995~）
+        <br><span class="small-text">→ 高額帯は教育訓練給付金（最大80%OFF）が前提設計</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 2: 主要AIスクール一覧 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <div class="section-title">主要AIスクール・サービス一覧</div>
+  </div>
+
+  <div class="card">
+    <h3>専門AIスクール（個人向け）</h3>
+    <table>
+      <tr>
+        <th style="width:160px;">スクール</th>
+        <th>料金</th>
+        <th>受講者/会員</th>
+        <th>特徴</th>
+        <th>ターゲット</th>
+      </tr>
+      <tr>
+        <td><strong>SHIFT AI</strong></td>
+        <td>月額21,780円<br><span class="tag tag-sub">サブスク</span></td>
+        <td>22,000人超</td>
+        <td>日本最大級の生成AIコミュニティ。50コース超、1,000本超動画、ほぼ毎日ウェビナー</td>
+        <td>生成AIをビジネス活用したい社会人</td>
+      </tr>
+      <tr>
+        <td><strong>Aidemy Premium</strong></td>
+        <td>3ヶ月528,000円<br><span class="tag tag-high">給付金で~11万</span></td>
+        <td>Premium 700名超<br>総会員5万人</td>
+        <td>Python特化AI/ML。E資格対応。売上19.5億円（FY2026予想）</td>
+        <td>AIエンジニア志望の社会人</td>
+      </tr>
+      <tr>
+        <td><strong>キカガク</strong></td>
+        <td>792,000円<br><span class="tag tag-high">給付金で~15.8万</span></td>
+        <td>個人85,000名超<br>法人含め200,000名超</td>
+        <td>動画中心。卒業後無期限閲覧可。メディカルAI専門コースあり</td>
+        <td>AI初学者~実務者</td>
+      </tr>
+      <tr>
+        <td><strong>DMM 生成AI CAMP</strong></td>
+        <td>月額14,800円<br><span class="tag tag-sub">サブスク</span></td>
+        <td>受講者数No.1標榜</td>
+        <td>全6コース（職種別）。生成AIツール活用特化。オンライン完結</td>
+        <td>非エンジニア含むビジネスパーソン</td>
+      </tr>
+      <tr>
+        <td><strong>侍エンジニア</strong></td>
+        <td>4週 193,050円~<br><span class="tag tag-mid">補助金で~70%OFF</span></td>
+        <td>累計45,000人超</td>
+        <td>マンツーマン指導。離脱率2.1%。オーダーメイドカリキュラム</td>
+        <td>未経験者~社内DX推進者</td>
+      </tr>
+      <tr>
+        <td><strong>テックアカデミー</strong></td>
+        <td>4週 149,600円~</td>
+        <td>累計30,000名超</td>
+        <td>ML/DL実践。Python+AIセット割。教育訓練給付金対象</td>
+        <td>プログラミング経験者</td>
+      </tr>
+      <tr>
+        <td><strong>スキルアップAI</strong></td>
+        <td>55,000~165,000円</td>
+        <td>E資格合格者1,400名超</td>
+        <td>JDLA認定第1号。E資格・G検定に強い。医療AI講座も</td>
+        <td>資格取得希望者</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>プラットフォーム型（Udemy / Brain / note等）</h3>
+    <table>
+      <tr>
+        <th>プラットフォーム</th>
+        <th>価格帯</th>
+        <th>AI系の特徴</th>
+        <th>人気コンテンツ例</th>
+      </tr>
+      <tr>
+        <td><strong>Udemy</strong></td>
+        <td>セール1,200~2,400円<br>通常10,000~27,800円</td>
+        <td>日本語AI講座の最大マーケット。ChatGPT/生成AI系が主力</td>
+        <td>「機械学習26のアルゴリズム」（世界91万人受講）<br>「ChatGPTで業務効率化」（3万人研修実績）</td>
+      </tr>
+      <tr>
+        <td><strong>Brain</strong></td>
+        <td>数百~数万円</td>
+        <td>AI副業・収益化ノウハウに特化。紹介機能によるバイラル設計</td>
+        <td>Claude AI副業自動化 / ChatGPT×ブログ爆速作成 / AI×占い副業</td>
+      </tr>
+      <tr>
+        <td><strong>note</strong></td>
+        <td>無料~数千円<br>一部1万円超</td>
+        <td>AI活用の知見共有。Claude Code関連の技術記事増加中</td>
+        <td>Claude×noteで月10万円 / ChatGPTで売れる有料note</td>
+      </tr>
+      <tr>
+        <td><strong>Schoo</strong></td>
+        <td>月額980円</td>
+        <td>職種別の生成AI活用授業。Gemini、NotebookLM等のツール解説</td>
+        <td>AI×ビジネス 現場主義 / ビジネスパーソンのための生成AI講座</td>
+      </tr>
+      <tr>
+        <td><strong>MENTA</strong></td>
+        <td>平均月14,000円</td>
+        <td>1対1メンタリング。AI系116件以上出品。伴走型が人気</td>
+        <td>生成AIプロンプト専門メンター / 経営者向けAI活用伴走</td>
+      </tr>
+      <tr>
+        <td><strong>ココナラ</strong></td>
+        <td>4,000~300,000円</td>
+        <td>AI導入相談・ツール開発代行。累計9,000件、専門家2,500人超</td>
+        <td>ChatGPTチャットボット作成 / GPTs作成代行</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>法人向けAI研修</h3>
+    <table>
+      <tr>
+        <th>サービス</th>
+        <th>導入実績</th>
+        <th>特徴</th>
+      </tr>
+      <tr>
+        <td><strong>Aidemy Business</strong></td>
+        <td>600社超</td>
+        <td>生成AI・ML・データ分析のeラーニング。Liteプラン1名18,000円/5名~</td>
+      </tr>
+      <tr>
+        <td><strong>SIGNATE Cloud</strong></td>
+        <td>1,000社超 / 18万ユーザー</td>
+        <td>DX人材育成クラウド。スキル診断、分析コンペ機能搭載</td>
+      </tr>
+      <tr>
+        <td><strong>DataRobot カタリスト</strong></td>
+        <td>大手企業中心</td>
+        <td>ハンズオン研修、ハッカソン、LLM評価手法</td>
+      </tr>
+      <tr>
+        <td><strong>キカガク法人研修</strong></td>
+        <td>1,000社超</td>
+        <td>カスタマイズ可能。メディカルAI専門コースも提供</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 3: AIコミュニティ成功事例 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <div class="section-title">AIコミュニティ成功事例 & ビジネスモデル</div>
+  </div>
+
+  <div class="card">
+    <h3>国内AIコミュニティ比較</h3>
+    <table>
+      <tr>
+        <th>コミュニティ</th>
+        <th>会員数</th>
+        <th>料金</th>
+        <th>モデル</th>
+        <th>成功の鍵</th>
+      </tr>
+      <tr>
+        <td><strong>CDLE</strong>（JDLA）</td>
+        <td>70,000人</td>
+        <td>無料<br><span class="tag tag-free">資格合格が条件</span></td>
+        <td>資格連動型</td>
+        <td>G検定/E資格をファネル入口にした自然なコミュニティ形成</td>
+      </tr>
+      <tr>
+        <td><strong>なかじ AI Slack</strong></td>
+        <td>140,000人</td>
+        <td>無料</td>
+        <td>インフルエンサー型</td>
+        <td>無料で集客→本業（アフィ・コンサル）への導線</td>
+      </tr>
+      <tr>
+        <td><strong>SHIFT AI</strong></td>
+        <td>22,000人</td>
+        <td>月21,780円</td>
+        <td>サブスク型</td>
+        <td>ほぼ毎日のウェビナー+50コース。コンテンツ鮮度が命</td>
+      </tr>
+      <tr>
+        <td><strong>AGIラボ</strong></td>
+        <td>非公開</td>
+        <td>月3,980円<br>法人月100,000円</td>
+        <td>メディア+Discord</td>
+        <td>noteメディア発。300本超の記事が資産に</td>
+      </tr>
+      <tr>
+        <td><strong>松尾研 AI Community</strong></td>
+        <td>非公開</td>
+        <td>無料~33,000円</td>
+        <td>アカデミア型</td>
+        <td>東大ブランド×松尾教授の個人ブランド</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>海外AIコミュニティ比較</h3>
+    <table>
+      <tr>
+        <th>コミュニティ</th>
+        <th>規模</th>
+        <th>料金</th>
+        <th>モデル</th>
+        <th>成功の鍵</th>
+      </tr>
+      <tr>
+        <td><strong>DeepLearning.AI</strong></td>
+        <td>700万人超<br>累計売上~1億ドル</td>
+        <td>Coursera経由<br>（月額制/単品）</td>
+        <td>プラットフォーム型</td>
+        <td>Andrew Ngの個人ブランド × Courseraのリーチ</td>
+      </tr>
+      <tr>
+        <td><strong>fast.ai</strong></td>
+        <td>数十万人</td>
+        <td>完全無料</td>
+        <td>OSSコミュニティ型</td>
+        <td>無料で世界最高品質のDL教育。書籍・コンサルで収益化</td>
+      </tr>
+      <tr>
+        <td><strong>Hugging Face</strong></td>
+        <td>1,300万人超</td>
+        <td>無料+Enterprise</td>
+        <td>フリーミアム型</td>
+        <td>OSSモデルハブ×エンタープライズB2Bの二層構造</td>
+      </tr>
+      <tr>
+        <td><strong>Reforge</strong></td>
+        <td>50,000人超</td>
+        <td>年$1,995~$23,995</td>
+        <td>高単価プロ型</td>
+        <td>ペルソナを明確に絞り、実務直結の価値提供</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- ビジネスモデル比較 -->
+  <div class="card">
+    <h3>ビジネスモデル5類型</h3>
+    <div class="model-comparison">
+      <div class="model-card">
+        <h4>サブスク型</h4>
+        <div class="price">月額課金</div>
+        <p class="small-text">SHIFT AI / AGIラボ / Reforge</p>
+        <ul>
+          <li>安定収益</li>
+          <li>継続接点が生まれる</li>
+          <li>チャーン率との闘い</li>
+          <li>コンテンツ更新が命</li>
+        </ul>
+      </div>
+      <div class="model-card recommended">
+        <span class="tag tag-red" style="display:block; margin-bottom:8px;">推奨候補</span>
+        <h4>サブスク + ワンショット</h4>
+        <div class="price">ハイブリッド型</div>
+        <p class="small-text">佐藤・鈴木構想はこれ</p>
+        <ul>
+          <li>セミナーで信頼構築</li>
+          <li>Slackで継続接点</li>
+          <li>二つの収益源</li>
+          <li>セミナー→コミュニティの導線</li>
+        </ul>
+      </div>
+      <div class="model-card">
+        <h4>フリーミアム型</h4>
+        <div class="price">無料+有料上位</div>
+        <p class="small-text">CDLE / Hugging Face</p>
+        <ul>
+          <li>大規模ユーザー獲得</li>
+          <li>エコシステム形成</li>
+          <li>無料層のマネタイズ難</li>
+          <li>ブランドが必要</li>
+        </ul>
+      </div>
+      <div class="model-card">
+        <h4>プラットフォーム型</h4>
+        <div class="price">レベニューシェア</div>
+        <p class="small-text">DeepLearning.AI + Coursera</p>
+        <ul>
+          <li>集客力大</li>
+          <li>低コスト運営</li>
+          <li>プラットフォーム依存</li>
+          <li>個人ブランドが鍵</li>
+        </ul>
+      </div>
+      <div class="model-card">
+        <h4>コホート型</h4>
+        <div class="price">期間限定集中</div>
+        <p class="small-text">Maven / 松尾研講座</p>
+        <ul>
+          <li>高単価可能</li>
+          <li>完了率が高い</li>
+          <li>スケールしにくい</li>
+          <li>講師の稼働負荷</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 成功/失敗パターン -->
+  <div class="card-grid">
+    <div class="highlight-box highlight-green">
+      <h4>成功コミュニティの共通要素</h4>
+      <ul>
+        <li><strong>明確なペルソナ:</strong> 「AIを学びたい初心者」ではなく「AIを業務に活かしたい○○業の人」</li>
+        <li><strong>コンテンツ鮮度:</strong> AI分野は1ヶ月で変わる。週次~日次更新が必須</li>
+        <li><strong>著名な旗振り役:</strong> 信頼性のある個人ブランドが集客エンジン</li>
+        <li><strong>実践の場:</strong> 座学だけでなく、コンペ・プロジェクト・コード共有</li>
+        <li><strong>ピアラーニング:</strong> メンバー同士の教え合いが活発</li>
+        <li><strong>段階的学習パス:</strong> 入門→中級→上級と進める設計</li>
+      </ul>
+    </div>
+    <div class="highlight-box highlight-red">
+      <h4>失敗パターン</h4>
+      <ul>
+        <li><strong>形骸化:</strong> コンテンツ更新が止まり、投稿が減少</li>
+        <li><strong>高い離脱率:</strong> B2C AI系サブスクの月次チャーン率~4%（年間~40%離脱）</li>
+        <li><strong>無料との差別化不能:</strong> YouTube/ブログとの違いが出せない</li>
+        <li><strong>運営者依存:</strong> カリスマ1人に依存→その人が抜けると崩壊</li>
+        <li><strong>スケーリングの壁:</strong> 少人数の密度が大きくなるとノイズ増加</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 4: 業界特化型の事例 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <div class="section-title">業界特化型AI教育の現状</div>
+  </div>
+
+  <div class="card">
+    <h3>業界特化型の成功事例</h3>
+    <table>
+      <tr>
+        <th>業界</th>
+        <th>取り組み</th>
+        <th>提供元</th>
+        <th>備考</th>
+      </tr>
+      <tr>
+        <td><strong>医療×AI</strong></td>
+        <td>メディカルAI専門コース</td>
+        <td>キカガク × 日本メディカルAI学会</td>
+        <td>画像分析、ゲノム配列解析、心拍異常検知等。<strong>業界特化の先行成功例</strong></td>
+      </tr>
+      <tr>
+        <td><strong>医療×AI</strong></td>
+        <td>医療AI人材育成拠点プログラム</td>
+        <td>東北大学病院（文科省支援）</td>
+        <td>大学病院ベースのAI人材育成</td>
+      </tr>
+      <tr>
+        <td><strong>製造業×AI</strong></td>
+        <td>製造業向けAI研修</td>
+        <td>カナン株式会社</td>
+        <td>製造現場特化のカスタマイズ研修</td>
+      </tr>
+      <tr>
+        <td><strong>農業×AI</strong></td>
+        <td>スマート農業カリキュラム教材</td>
+        <td>農林水産省</td>
+        <td>農業大学校・大学生向け。一般生産者向けではない</td>
+      </tr>
+      <tr>
+        <td><strong>畜産×AI</strong></td>
+        <td>スマート養豚プロジェクト（社内）</td>
+        <td>日本ハム</td>
+        <td>IoT/AIで豚の健康・発情判定。<strong>社内教育のみ、外販なし</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="highlight-box highlight-gold">
+    <h4>重要な発見: 養豚・畜産×AI教育は完全な空白</h4>
+    <ul>
+      <li>養豚業界に特化した「AIスクール」は<strong>国内外ともに確認できず</strong></li>
+      <li>AI教育は企業内研修（日本ハム等）、農水省支援、スタートアップ協業が中心</li>
+      <li>「生産者が自ら学ぶ」仕組みは存在しない</li>
+      <li>医療AI（キカガク×学会）が業界特化の成功モデルとして参考になる</li>
+      <li>スマート酪農・畜産市場は2027年度132.5億円に成長見込み → <strong>教育需要も連動して伸びる</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 5: 佐藤・鈴木構想の評価 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <div class="section-title">佐藤・鈴木構想の評価とポジショニング</div>
+  </div>
+
+  <div class="card">
+    <h3>現在の構想サマリー</h3>
+    <table>
+      <tr>
+        <th>項目</th>
+        <th>佐藤・鈴木構想</th>
+        <th>市場水準との比較</th>
+      </tr>
+      <tr>
+        <td><strong>Slackコミュニティ</strong></td>
+        <td>月額3,000~5,000円</td>
+        <td>AGIラボ（3,980円）と同帯。SHIFT AI（21,780円）の1/5。<strong>養豚特化なら妥当~やや安い</strong></td>
+      </tr>
+      <tr>
+        <td><strong>1日AIセミナー</strong></td>
+        <td>1人10万円 / 農場訪問20万円</td>
+        <td>AIスクール相場20~60万（1on1付き上位）。<strong>訪問型20万は「農場で実演」の付加価値があり差別化可能</strong></td>
+      </tr>
+      <tr>
+        <td><strong>コミュニティ方向性</strong></td>
+        <td>B+C（課題解決×製品共創）</td>
+        <td>Hugging Faceに近い「共創型」。<strong>ロックインが強く戦略的に正しい</strong></td>
+      </tr>
+      <tr>
+        <td><strong>有料化の根拠</strong></td>
+        <td>お金を払った方がコミットが高まる</td>
+        <td>Reforgeと同じ思想。<strong>B2Cサブスクのチャーン率~4%/月を考慮した設計が必要</strong></td>
+      </tr>
+      <tr>
+        <td><strong>ローンチ目標</strong></td>
+        <td>2026年4月末</td>
+        <td><strong>スピード感は良好</strong>。ただし最小構成（MVP）の定義が必要</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 強み評価 -->
+  <div class="card">
+    <h3>構想の強み・独自性スコア</h3>
+    <div class="score-bar">
+      <div class="label">市場空白度</div>
+      <div class="bar"><div class="fill" style="width:95%; background: linear-gradient(90deg, var(--accent), #ff6b6b);"></div></div>
+      <div class="value">95</div>
+    </div>
+    <div class="score-bar">
+      <div class="label">業界知見</div>
+      <div class="bar"><div class="fill" style="width:90%; background: linear-gradient(90deg, var(--accent2), #4ecdc4);"></div></div>
+      <div class="value">90</div>
+    </div>
+    <div class="score-bar">
+      <div class="label">Porker連動</div>
+      <div class="bar"><div class="fill" style="width:85%; background: linear-gradient(90deg, var(--accent3), #a29bfe);"></div></div>
+      <div class="value">85</div>
+    </div>
+    <div class="score-bar">
+      <div class="label">収益モデル</div>
+      <div class="bar"><div class="fill" style="width:70%; background: linear-gradient(90deg, var(--warning), #ffeaa7);"></div></div>
+      <div class="value">70</div>
+    </div>
+    <div class="score-bar">
+      <div class="label">スケーラビリティ</div>
+      <div class="bar"><div class="fill" style="width:50%; background: linear-gradient(90deg, #636e72, #b2bec3);"></div></div>
+      <div class="value">50</div>
+    </div>
+    <div class="score-bar">
+      <div class="label">運営体制</div>
+      <div class="bar"><div class="fill" style="width:45%; background: linear-gradient(90deg, #d63031, #ff7675);"></div></div>
+      <div class="value">45</div>
+    </div>
+    <p class="small-text mt-20">※ 100点満点。市場空白度・業界知見は圧倒的に高いが、運営リソースとスケーラビリティの設計が課題</p>
+  </div>
+
+  <!-- ポジショニングマップ -->
+  <div class="card">
+    <h3>ポジショニングマップ（業界特化度 × 価格帯）</h3>
+    <div class="quadrant">
+      <div class="quadrant-label" style="grid-column: 1 / -1;">← 低価格 ─────────── 高価格 →</div>
+      <div class="quadrant-cell" style="border-right: 3px solid var(--accent);">
+        <h4 style="color: var(--accent2);">低価格 × 業界特化</h4>
+        <ul>
+          <li>農水省 スマート農業教材（無料）</li>
+          <li><strong style="color:var(--accent);">Eco-Pork Slackコミュニティ（月3-5千円）← ここ</strong></li>
+          <li>業界Slack/Discord（多くは無料~数千円）</li>
+        </ul>
+        <p class="small-text mt-20">この象限はほぼ空。参入障壁が低い反面、<strong>先行者利益が大きい</strong></p>
+      </div>
+      <div class="quadrant-cell">
+        <h4 style="color: var(--accent3);">高価格 × 業界特化</h4>
+        <ul>
+          <li>キカガク × メディカルAI（79.2万円）</li>
+          <li>カナン 製造業AI研修</li>
+          <li><strong style="color:var(--accent);">Eco-Pork 1日セミナー（10-20万円）← ここも</strong></li>
+        </ul>
+        <p class="small-text mt-20">医療以外は事例が少ない。<strong>養豚特化で参入すれば唯一のポジション</strong></p>
+      </div>
+      <div class="quadrant-label" style="grid-column: 1 / -1; transform: rotate(0);">↑ 業界特化 ─────────── 汎用 ↓</div>
+      <div class="quadrant-cell" style="border-right: 3px solid var(--border);">
+        <h4 style="color: var(--muted);">低価格 × 汎用</h4>
+        <ul>
+          <li>Udemy（セール1,200円~）</li>
+          <li>Schoo（月980円）</li>
+          <li>AGIラボ（月3,980円）</li>
+          <li>Brain / note（数百~数千円）</li>
+        </ul>
+        <p class="small-text mt-20">レッドオーシャン。無料コンテンツとの差別化が困難</p>
+      </div>
+      <div class="quadrant-cell">
+        <h4 style="color: var(--muted);">高価格 × 汎用</h4>
+        <ul>
+          <li>Aidemy Premium（52.8万円）</li>
+          <li>侍エンジニア（19.3万円~）</li>
+          <li>SHIFT AI（月21,780円）</li>
+          <li>Reforge（年$1,995~）</li>
+        </ul>
+        <p class="small-text mt-20">大手がひしめく。ブランド・コンテンツ量で勝負</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 6: 空白地帯 & 介在余地 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">6</div>
+    <div class="section-title">空白地帯 & Eco-Porkの介在余地</div>
+  </div>
+
+  <div class="gap-grid">
+    <div class="gap-card hot">
+      <h4>1. 養豚×AI教育（完全空白）</h4>
+      <p>養豚業界に特化したAIスクール・コミュニティは国内外ともにゼロ。医療AIが先行成功例として参考になるが、養豚は完全未開拓。</p>
+      <div class="highlight-box highlight-green" style="margin:0;">
+        <strong>介在余地:</strong> 「養豚のAI活用はここが詳しい」という業界標準を作る側に回れる。Porkerの顧客基盤（20農場超）がそのまま初期メンバーになる。先行者利益が極めて大きい。
+      </div>
+    </div>
+
+    <div class="gap-card hot">
+      <h4>2. 現場実演型AIセミナー</h4>
+      <p>既存AIスクールはほぼ全てオンライン。農場を訪問して「その場でClaude Codeを使って課題を解く」という体験型は皆無。</p>
+      <div class="highlight-box highlight-green" style="margin:0;">
+        <strong>介在余地:</strong> 佐藤さんの農場長としての現場知見 × Claude Code活用スキルの掛け算。「10万円で明日から使えるAI」は社長に響く。営業哲学の「現場訪問→信頼構築」とも一致。
+      </div>
+    </div>
+
+    <div class="gap-card hot">
+      <h4>3. SaaS連動型コミュニティ</h4>
+      <p>SHIFT AIやAGIラボは汎用ツール教育。自社SaaS（Porker）の活用をコミュニティで深化させるモデルは畜産分野で皆無。</p>
+      <div class="highlight-box highlight-green" style="margin:0;">
+        <strong>介在余地:</strong> B+C型（課題解決×製品共創）はHugging Face型のロックイン。「コミュニティメンバーの声→Porker開発→メンバーが使う」の好循環。解約率を劇的に下げられる。
+      </div>
+    </div>
+
+    <div class="gap-card">
+      <h4>4. 畜産経営者向けAI意思決定支援</h4>
+      <p>既存AIスクールのターゲットはエンジニアか汎用ビジネスパーソン。「農場経営の意思決定にAIをどう使うか」を教える場がない。</p>
+      <div class="highlight-box highlight-blue" style="margin:0;">
+        <strong>介在余地:</strong> AIベンチマーク構想（偏差値スコア、匿名事例マッチング）と連動。「自分の農場の立ち位置をAIで知る」体験はコミュニティの強力なフック。
+      </div>
+    </div>
+
+    <div class="gap-card">
+      <h4>5. 非エンジニアの「AIエージェント活用」教育</h4>
+      <p>Brain/noteはAI副業ノウハウが中心。「本業（養豚）でAIエージェントを動かす」教育は未開拓。</p>
+      <div class="highlight-box highlight-blue" style="margin:0;">
+        <strong>介在余地:</strong> 佐藤さん自身が「AIエージェントを動かす人材」宣言済み。その実践を教材化できる。AIエージェントのLevel 0-5フレームワークをカリキュラムに組み込める。
+      </div>
+    </div>
+
+    <div class="gap-card">
+      <h4>6. 産官学連携の受け皿</h4>
+      <p>農水省のスマート農業支援、大学の研究、飼料メーカーのデータ活用。これらをつなぐ「コミュニティ」が存在しない。</p>
+      <div class="highlight-box highlight-blue" style="margin:0;">
+        <strong>介在余地:</strong> コミュニティが大きくなれば、農水省・大学・飼料メーカーとの接点が自然に生まれる。登壇・メディア露出→採用への波及効果も。
+      </div>
+    </div>
+  </div>
+
+  <!-- 既存構想にない視点 -->
+  <div class="card">
+    <h3>既存構想に追加で検討すべき視点</h3>
+    <table>
+      <tr>
+        <th>視点</th>
+        <th>市場からの学び</th>
+        <th>構想への反映案</th>
+      </tr>
+      <tr>
+        <td><strong>チャーン対策</strong></td>
+        <td>AIサブスクの月次チャーン率~4%。ChatGPT Plusの6ヶ月継続率71%</td>
+        <td>3ヶ月/半年パック割引を用意。「Porkerユーザー割引」で製品ロックインと二重に効かせる</td>
+      </tr>
+      <tr>
+        <td><strong>コンテンツ量の壁</strong></td>
+        <td>SHIFT AIは50コース1,000本超。AGIラボは300記事超。初期から「量」が信頼に直結</td>
+        <td>初期はセミナー録画+Vault知識のアーカイブ化で量を確保。NotebookLMで質問対応を半自動化</td>
+      </tr>
+      <tr>
+        <td><strong>認定・資格の仕組み</strong></td>
+        <td>CDLEは資格合格がコミュニティ入口。スキルアップAIはE資格が集客エンジン</td>
+        <td>「養豚AI活用認定」のようなバッジ/レベル制度。修了証をPorker画面に表示など</td>
+      </tr>
+      <tr>
+        <td><strong>紹介・口コミ設計</strong></td>
+        <td>Brainは紹介機能が購入を後押し。農場主同士の口コミは信頼度が高い</td>
+        <td>紹介者に1ヶ月無料等のインセンティブ。成功農場の登壇会で自然に伝播</td>
+      </tr>
+      <tr>
+        <td><strong>法人プラン</strong></td>
+        <td>AGIラボPRO月10万円。Aidemy Business 1名18,000円。法人単価は個人の数倍</td>
+        <td>飼料メーカー・種豚業者向け法人プランを将来的に視野。データ共有権限付き</td>
+      </tr>
+      <tr>
+        <td><strong>補助金活用</strong></td>
+        <td>高額スクールは教育訓練給付金（最大80%OFF）が前提設計</td>
+        <td>農水省のスマート農業関連補助金、中小企業デジタル化支援の対象化を検討</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 7: 佐藤・鈴木アウトプットの再構成 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">7</div>
+    <div class="section-title">佐藤・鈴木アイデアの統合アウトプット</div>
+  </div>
+
+  <div class="highlight-box highlight-purple">
+    <h4>構想の本質（2つのノートから抽出）</h4>
+    <p>佐藤・鈴木構想は、単なる「AIスクール」ではなく<strong>「Porkerエコシステムの拡張」</strong>として設計されている。これは市場調査の結果、極めて正しい方向性であることが確認できた。</p>
+    <ul>
+      <li><strong>鈴木さんの視点:</strong> CS活動の延長としてのコミュニティ → 解約防止 + 新規収益源</li>
+      <li><strong>佐藤さんの視点:</strong> 農場長×AI活用の実践者としての希少ポジション → 業界インフルエンス</li>
+      <li><strong>両者の交点:</strong> 「養豚×AIのコミュニティを持つ唯一の会社」という競合優位</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>統合サービス設計案（MVP → 拡張）</h3>
+
+    <div class="model-comparison" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="model-card">
+        <span class="tag tag-green">Phase 1: MVP（4月~）</span>
+        <h4>まず動かす</h4>
+        <div class="price">月額5,000円<br><span style="font-size:0.7rem;">+ セミナー10万/回</span></div>
+        <ul>
+          <li>Slackコミュニティ開設</li>
+          <li>初期メンバー5~10農場</li>
+          <li>週1回のTips投稿（佐藤）</li>
+          <li>月1回のオンライン勉強会</li>
+          <li>訪問セミナー受付開始</li>
+          <li><strong>KPI: 10名参加、離脱0</strong></li>
+        </ul>
+      </div>
+      <div class="model-card recommended">
+        <span class="tag tag-gold">Phase 2: 拡充（7月~）</span>
+        <h4>コンテンツを厚くする</h4>
+        <div class="price">月額5,000~10,000円<br><span style="font-size:0.7rem;">+ セミナー10-20万/回</span></div>
+        <ul>
+          <li>セミナー録画アーカイブ化</li>
+          <li>先進農場の登壇会（月1回）</li>
+          <li>AIベンチマーク（偏差値）体験</li>
+          <li>Porker連動の課題解決事例共有</li>
+          <li>NotebookLMでFAQ半自動化</li>
+          <li><strong>KPI: 30名、月次チャーン&lt;5%</strong></li>
+        </ul>
+      </div>
+      <div class="model-card">
+        <span class="tag tag-purple">Phase 3: エコシステム（2027~）</span>
+        <h4>業界標準化</h4>
+        <div class="price">月額10,000~15,000円<br><span style="font-size:0.7rem;">+ 法人プラン月10万</span></div>
+        <ul>
+          <li>「養豚AI活用認定」制度</li>
+          <li>飼料メーカー/種豚業者の法人プラン</li>
+          <li>産官学連携（農水省、大学）</li>
+          <li>年次カンファレンス開催</li>
+          <li>AIエージェント活用の上級コース</li>
+          <li><strong>KPI: 100名+、年間売上1,000万超</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 収益シミュレーション -->
+  <div class="card">
+    <h3>収益シミュレーション</h3>
+    <table>
+      <tr>
+        <th>項目</th>
+        <th>Phase 1（月）</th>
+        <th>Phase 2（月）</th>
+        <th>Phase 3（月）</th>
+      </tr>
+      <tr>
+        <td>Slackコミュニティ</td>
+        <td>10名 × 5,000円 = <strong>5万円</strong></td>
+        <td>30名 × 7,500円 = <strong>22.5万円</strong></td>
+        <td>100名 × 12,500円 = <strong>125万円</strong></td>
+      </tr>
+      <tr>
+        <td>セミナー</td>
+        <td>月1回 × 10万円 = <strong>10万円</strong></td>
+        <td>月2回 × 15万円 = <strong>30万円</strong></td>
+        <td>月3回 × 20万円 = <strong>60万円</strong></td>
+      </tr>
+      <tr>
+        <td>法人プラン</td>
+        <td>-</td>
+        <td>-</td>
+        <td>3社 × 10万円 = <strong>30万円</strong></td>
+      </tr>
+      <tr style="background: #fff3cd;">
+        <td><strong>月額合計</strong></td>
+        <td><strong>15万円</strong></td>
+        <td><strong>52.5万円</strong></td>
+        <td><strong>215万円</strong></td>
+      </tr>
+      <tr style="background: #d4edda;">
+        <td><strong>年間</strong></td>
+        <td><strong>180万円</strong></td>
+        <td><strong>630万円</strong></td>
+        <td><strong>2,580万円</strong></td>
+      </tr>
+    </table>
+    <p class="small-text mt-20">※ チャーン率未考慮の楽観値。Phase 2以降は新規獲得でチャーンを補填する前提</p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 8: 差別化・競合優位の整理 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">8</div>
+    <div class="section-title">競合が真似できない「堀」</div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>堀1: 現場データ × Porker</h3>
+      <ul>
+        <li>Porkerに蓄積された<strong>リアルな養豚データ</strong>を使ったAI活用教育は他社にできない</li>
+        <li>汎用AIスクールが「養豚データで学ぶ」教材を作るのは非現実的</li>
+        <li>AIベンチマーク（偏差値）は<strong>データが集まるほど価値が上がる</strong>ネットワーク効果</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>堀2: 佐藤裕次郎の希少性</h3>
+      <ul>
+        <li>「農場長 × Claude Code実践者 × AIコミュニティ主宰」は<strong>日本で唯一</strong></li>
+        <li>Andrew NgがAIのブランドであるように、養豚AIの佐藤になれる</li>
+        <li>Vault（外部脳）に蓄積された業務知見がそのままコンテンツの源泉</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>堀3: 顧客との共創関係</h3>
+      <ul>
+        <li>B+C型コミュニティは<strong>「一緒に育てる」関係</strong>が最強のロックイン</li>
+        <li>コミュニティの声→Porker開発→ユーザーが使う、の好循環</li>
+        <li>他社SaaSが同じことをやるには顧客関係をゼロから構築する必要</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>堀4: 営業ファネルとの統合</h3>
+      <ul>
+        <li>佐藤さんの営業哲学「イベント→お礼→価値提供→商談→提案→オンボーディング」にコミュニティがぴったりはまる</li>
+        <li>セミナー（イベント）→コミュニティ（価値提供）→Porker（商談/提案）の自然な導線</li>
+        <li>CS戦略の3本柱（質疑/オンボ/更新）にコミュニティが4本目として追加</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 9: リスクと対策 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">9</div>
+    <div class="section-title">リスクと対策</div>
+  </div>
+
+  <div class="card">
+    <table>
+      <tr>
+        <th style="width:80px;">深刻度</th>
+        <th>リスク</th>
+        <th>対策案</th>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">高</span></td>
+        <td><strong>形骸化</strong>: コンテンツ更新が止まり、投稿が減る</td>
+        <td>
+          佐藤さんの日常業務（農場巡回、Porker活用）をそのまま「コンテンツ化」する設計にする。特別な作業ではなく、<strong>既存業務の副産物としてコンテンツが生まれる</strong>仕組み。Vault→コミュニティの自動共有も検討
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-red">高</span></td>
+        <td><strong>運営者依存</strong>: 特定の個人に運営が集中し、持続できない</td>
+        <td>
+          Phase 1は最小稼働（週1投稿+月1勉強会）に絞る。早期にコミュニティ内の「伝道師」（先進農場）を育成し、登壇・回答を委譲。NotebookLMでFAQ対応を半自動化
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-gold">中</span></td>
+        <td><strong>初期メンバー不足</strong>: 有料にすると集まらない</td>
+        <td>
+          最初の5名はPorkerユーザーの中で「感度が高い農場長」を個別に声かけ。無料体験期間1ヶ月を設けてから有料化。アクエスさん等の先進農場に登壇依頼で「見本」を作る
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-gold">中</span></td>
+        <td><strong>無料コンテンツとの差別化</strong>: YouTube/ブログで十分と思われる</td>
+        <td>
+          汎用AIスキルではなく<strong>「あなたの農場のデータでAIを使う」</strong>という個別具体の価値を前面に。Porkerデータ連携やベンチマーク偏差値は無料では得られない
+        </td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-blue">低</span></td>
+        <td><strong>競合の追随</strong>: 他の畜産SaaS企業が同様のコミュニティを始める</td>
+        <td>
+          先行者利益を最大化するために4月ローンチを死守。データ蓄積とネットワーク効果で堀を築く。<strong>やるなら「最初」であることが最大の武器</strong>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 10: MVP設計 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">10</div>
+    <div class="section-title">MVP設計（4月末ローンチ）</div>
+  </div>
+
+  <div class="highlight-box highlight-blue" style="margin-bottom:24px;">
+    <h4>MVPの考え方: 「小さく始めて、メンバーの反応を見てから育てる」</h4>
+    <p>コンテンツもカリキュラムも最初から用意する必要はない。Slackを開設して5人招待して週1で投稿する、それだけでMVPとしては十分。</p>
+  </div>
+
+  <div class="card">
+    <h3>MVP概要</h3>
+    <table>
+      <tr>
+        <th style="width:180px;">項目</th>
+        <th>内容</th>
+      </tr>
+      <tr>
+        <td><strong>コンセプト</strong></td>
+        <td>Porkerユーザー限定のSlackに、週1でAI活用Tipsを流す</td>
+      </tr>
+      <tr>
+        <td><strong>参加資格</strong></td>
+        <td>Porkerユーザー限定</td>
+      </tr>
+      <tr>
+        <td><strong>価格</strong></td>
+        <td><strong>無料（Porker契約に内包）</strong>or +1,000円/月</td>
+      </tr>
+      <tr>
+        <td><strong>プラットフォーム</strong></td>
+        <td>Slack（既存CS用と別ワークスペース or チャンネル追加）</td>
+      </tr>
+      <tr>
+        <td><strong>初期メンバー</strong></td>
+        <td>5~10農場（感度の高い農場長を個別に声かけ）</td>
+      </tr>
+      <tr>
+        <td><strong>運営稼働</strong></td>
+        <td>週2~3時間</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Slackチャンネル構成（最小4つ）</h3>
+    <table>
+      <tr>
+        <th>チャンネル</th>
+        <th>内容</th>
+        <th>投稿主体</th>
+      </tr>
+      <tr>
+        <td><strong>#お知らせ</strong></td>
+        <td>運営からの連絡</td>
+        <td>Eco-Pork</td>
+      </tr>
+      <tr>
+        <td><strong>#ai-tips</strong></td>
+        <td>週1のAI活用事例（「こう使ったらこうなった」）</td>
+        <td>Eco-Pork → 徐々にメンバーも</td>
+      </tr>
+      <tr>
+        <td><strong>#困りごと</strong></td>
+        <td>農場の課題相談。AIで解けそうなものはその場で実演</td>
+        <td>メンバー</td>
+      </tr>
+      <tr>
+        <td><strong>#雑談</strong></td>
+        <td>飼料価格、天候、業界ニュース、何でもOK</td>
+        <td>メンバー</td>
+      </tr>
+    </table>
+    <p class="small-text mt-20">※ #雑談の活性度がコミュニティの健全性のバロメーター。AIチャンネルだけだと堅くなりすぎる</p>
+  </div>
+
+  <div class="card">
+    <h3>運営稼働の内訳（週2~3時間）</h3>
+    <table>
+      <tr>
+        <th>タスク</th>
+        <th>頻度</th>
+        <th>所要時間</th>
+        <th>内容</th>
+      </tr>
+      <tr>
+        <td><strong>#ai-tips投稿</strong></td>
+        <td>週1回</td>
+        <td>15~30分</td>
+        <td>日常業務でAIを使った事例を1つ共有するだけ</td>
+      </tr>
+      <tr>
+        <td><strong>#困りごと返信</strong></td>
+        <td>随時</td>
+        <td>1件10分程度</td>
+        <td>質問への回答。AIで解決策を出してみる</td>
+      </tr>
+      <tr>
+        <td><strong>オンライン勉強会</strong></td>
+        <td>月1回</td>
+        <td>30分</td>
+        <td>画面共有でClaude Code等の活用実演</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>MVPで検証する3つの仮説</h3>
+    <table>
+      <tr>
+        <th style="width:40px;">#</th>
+        <th>仮説</th>
+        <th>検証方法</th>
+        <th>判断基準</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td><strong>養豚業の人はAI活用に関心がある</strong></td>
+        <td>声かけ時の反応率、参加後の閲覧率</td>
+        <td>声かけ10名中5名以上が参加</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>コミュニティに自発的な投稿が生まれる</strong></td>
+        <td>#困りごと・#雑談の投稿頻度</td>
+        <td>月に3件以上のメンバー発投稿</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>コミュニティがPorkerの価値を高める</strong></td>
+        <td>参加者のPorkerログイン頻度・解約意向</td>
+        <td>非参加者との差が出るか</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>MVPでやらないこと</h3>
+    <div class="highlight-box highlight-red" style="margin:0;">
+      <ul>
+        <li>カリキュラムを作らない</li>
+        <li>セミナーの商品化はまだしない（需要が見えてからでいい）</li>
+        <li>動画教材を作らない</li>
+        <li>認定制度を作らない</li>
+        <li>非Porkerユーザーへの開放はしない</li>
+        <li>料金を高くしない（シェア拡大が目的）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Phase 2への移行条件（3ヶ月後に判断）</h3>
+    <div class="card-grid">
+      <div class="highlight-box highlight-green">
+        <h4>仮説が検証できた場合 → Phase 2へ</h4>
+        <ul>
+          <li>セミナー商品化（10~20万円）</li>
+          <li>メンバー拡大（20~30農場）</li>
+          <li>コンテンツのアーカイブ化</li>
+          <li>AIベンチマーク（偏差値）の体験版</li>
+        </ul>
+      </div>
+      <div class="highlight-box highlight-gold">
+        <h4>仮説が外れた場合 → 方針転換 or 撤退</h4>
+        <ul>
+          <li>コミュニティの方向性を修正</li>
+          <li>畳む判断も含めて再検討</li>
+          <li><strong>少額 or 無料で始めているので撤退コストはほぼゼロ</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION: 社内検討ポイント -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">11</div>
+    <div class="section-title">社内検討で決めるべきこと</div>
+  </div>
+
+  <div class="card">
+    <h3>議論アジェンダ（5項目）</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="date">議題1</div>
+        <h4>初期メンバー候補の具体名</h4>
+        <p>Porkerユーザーの中で最も感度が高い農場長3~5名をリストアップ。個別に声をかける。03_Customers/のノートから候補を選定</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">議題2</div>
+        <h4>SlackをCS用と同居させるか分けるか</h4>
+        <p>既存のCS対応Slackにチャンネル追加するか、コミュニティ専用ワークスペースを新設するか</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">議題3</div>
+        <h4>価格: 無料 or +1,000円</h4>
+        <p>Porker契約に完全内包（無料）か、少額上乗せか。<strong>有料なら「払った方がコミットが高まる」原則</strong>に則る。初月無料体験も検討</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">議題4</div>
+        <h4>運営体制と役割分担</h4>
+        <p>誰が週1投稿を担当するか。持ち回り制もあり。<strong>週何時間を投下するか</strong>を合意</p>
+      </div>
+      <div class="timeline-item">
+        <div class="date">議題5</div>
+        <h4>ローンチ日の確定</h4>
+        <p>4月第何週にローンチするか。逆算して声かけ・Slack準備のスケジュールを引く</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box highlight-purple">
+    <h4>最後に: この構想の本当の意味</h4>
+    <p style="font-size: 15px; line-height: 1.8;">
+      市場調査の結論として、<strong>養豚×AI教育は完全な空白地帯</strong>です。<br><br>
+      既存のAIスクール（SHIFT AI、Aidemy等）は「汎用×オンライン」に集中しており、<strong>業界特化 × 現場実践 × SaaS連動</strong>という佐藤・鈴木構想のポジションに近い競合は存在しません。<br><br>
+      最大のリスクは「やらないリスク」です。養豚業界でAI教育に最も近い位置にいるのはEco-Pork。今やらなければ、他の誰かがやるか、もしくは永遠に空白のままです。<br><br>
+佐藤さんの言葉を借りれば、<strong>「AIエージェントを動かす人材」を養豚業界に増やす最初の一手</strong>。<br>
+      それがこのコミュニティの本質です。
+    </p>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECTION 12: 3つの戦略的示唆 -->
+<!-- ============================================ -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-number">12</div>
+    <div class="section-title">3つの戦略的示唆 ── Porker起点の囲い込み設計</div>
+  </div>
+
+  <div class="highlight-box highlight-purple" style="margin-bottom:30px;">
+    <h4>根底にある考え方</h4>
+    <p style="font-size:15px; line-height:1.8;">
+      このコミュニティは「AIスクール」ではなく、<strong>Porker SaaSの拡張レイヤー</strong>として設計すべき。<br>
+      目的は「AI教育で稼ぐ」ことではなく、<strong>Porkerユーザーの囲い込み・シェア拡大・業界ネットワーク強化</strong>の3つ。<br>
+      収益はあくまで副産物。この優先順位を間違えると「AIスクールの劣化版」になる。
+    </p>
+  </div>
+
+  <!-- ======== 示唆1: Porkerユーザー限定 × 少額 ======== -->
+  <div class="card" style="border-left: 5px solid var(--accent);">
+    <h3 style="color:var(--accent);">戦略1: Porkerユーザー限定 × 少額 → シェア拡大エンジン</h3>
+
+    <div class="highlight-box highlight-gold">
+      <h4>核心: コミュニティは「Porkerの付加価値」である</h4>
+      <p>月額3,000~5,000円のコミュニティ単体で勝負するのではなく、<strong>「Porkerに入ればコミュニティもついてくる」</strong>という設計にすることで、Porker本体の競争力が跳ね上がる。</p>
+    </div>
+
+    <table>
+      <tr>
+        <th style="width:200px;">設計オプション</th>
+        <th>内容</th>
+        <th>効果</th>
+      </tr>
+      <tr>
+        <td><span class="tag tag-green">推奨</span><br><strong>A. Porker契約に内包</strong></td>
+        <td>Porker月額にコミュニティ参加権を含める。追加費用ゼロ、もしくはPorkerプランのアップグレード（+1,000~2,000円/月）として提供</td>
+        <td>
+          <ul style="margin-left:16px; font-size:13px;">
+            <li><strong>Porkerの解約コストが上がる</strong>（コミュニティも失う）</li>
+            <li>営業時に「Porker導入するとAIコミュニティも使えます」が武器に</li>
+            <li>新規営業のクロージング率UP</li>
+            <li>「無料で得られるコミュニティ」なので参加障壁が限りなく低い</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>B. Porkerユーザー特別価格</strong></td>
+        <td>一般: 月額5,000円 / Porkerユーザー: 月額1,000~2,000円</td>
+        <td>
+          <ul style="margin-left:16px; font-size:13px;">
+            <li>コミュニティ単体でも収益が立つ</li>
+            <li>「Porkerユーザーはお得」のインセンティブ設計</li>
+            <li>非Porkerユーザーが「安くするためにPorkerも入ろう」と逆流する</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>C. 完全限定（門番型）</strong></td>
+        <td>Porkerユーザーしか参加できない。非ユーザーは一切不可</td>
+        <td>
+          <ul style="margin-left:16px; font-size:13px;">
+            <li>「入りたければPorkerを契約しろ」という最強の導線</li>
+            <li>コミュニティ自体がPorkerの営業ツールになる</li>
+            <li>メンバーの質が担保される（全員が養豚の実務者）</li>
+            <li><strong>排他性が帰属意識を高める</strong></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+    <div class="highlight-box highlight-green">
+      <h4>推奨: A+Cのハイブリッド</h4>
+      <ul>
+        <li><strong>Porkerユーザー限定</strong>（門番型）で排他性と帰属意識を確保</li>
+        <li>Porker契約に<strong>コミュニティ参加権を無料 or +1,000円で内包</strong></li>
+        <li>セミナー（10~20万円）は非Porkerユーザーにも開放 → セミナー参加者をPorker契約に導線</li>
+        <li>結果: <strong>コミュニティ単体の売上は小さくても、Porkerの新規獲得・解約防止で何倍もの価値</strong></li>
+      </ul>
+      <p style="margin-top:12px; font-size:14px;">
+        <strong>試算:</strong> コミュニティの存在でPorkerの年間チャーン率が5%改善するだけで、LTV換算で<strong>月額コミュニティ費の数十倍の価値</strong>になる。少額にする「損」は存在しない。
+      </p>
+    </div>
+
+    <div style="background:#f8f9fb; border-radius:10px; padding:16px; margin-top:16px;">
+      <h4 style="font-size:0.9rem; margin-bottom:8px;">参考: SaaS × コミュニティの成功モデル</h4>
+      <table style="margin:0;">
+        <tr>
+          <th>企業</th>
+          <th>SaaS</th>
+          <th>コミュニティ</th>
+          <th>関係</th>
+        </tr>
+        <tr>
+          <td>HubSpot</td>
+          <td>CRM/MA</td>
+          <td>HubSpot Community</td>
+          <td>無料。ユーザー同士のQ&A → CS負荷軽減 + 解約防止</td>
+        </tr>
+        <tr>
+          <td>Salesforce</td>
+          <td>CRM</td>
+          <td>Trailblazer Community</td>
+          <td>無料。認定資格（Trailhead）がファネル。300万人超</td>
+        </tr>
+        <tr>
+          <td>Figma</td>
+          <td>デザインツール</td>
+          <td>Friends of Figma</td>
+          <td>無料。地域別ミートアップ → ユーザー拡大エンジン</td>
+        </tr>
+        <tr>
+          <td>Notion</td>
+          <td>ドキュメント/DB</td>
+          <td>Notion Champions</td>
+          <td>無料。パワーユーザーが布教 → オーガニック獲得</td>
+        </tr>
+      </table>
+      <p class="small-text" style="margin-top:8px;">→ 成功SaaSのコミュニティはほぼ全て<strong>無料 or SaaS契約に内包</strong>。単体課金モデルはほぼない</p>
+    </div>
+  </div>
+
+  <!-- ======== 示唆2: 養豚専門性で囲い込み ======== -->
+  <div class="card" style="border-left: 5px solid var(--accent2); margin-top:30px;">
+    <h3 style="color:var(--accent2);">戦略2: 養豚専門性の深掘り → 他AIセミナーに行く理由をなくす</h3>
+
+    <div class="highlight-box highlight-blue">
+      <h4>核心: 「汎用AIスキル」では勝てない。「養豚でAIを使う」で独占する</h4>
+      <p>SHIFT AI（月21,780円）やUdemy（セール1,200円）と「ChatGPTの使い方」で勝負しても意味がない。<br>
+      彼らが絶対に提供できない<strong>「養豚の現場課題をAIで解く」</strong>コンテンツで独占する。</p>
+    </div>
+
+    <h4 style="margin:20px 0 12px;">養豚特化コンテンツの設計（汎用スクールとの差別化）</h4>
+    <table>
+      <tr>
+        <th style="width:50%;">汎用AIスクールが教えること</th>
+        <th style="width:50%;">このコミュニティでしか得られないこと</th>
+      </tr>
+      <tr>
+        <td>ChatGPTの基本的な使い方</td>
+        <td><strong>「母豚の繁殖成績をClaude Codeで分析して改善点を出す」</strong>具体手順</td>
+      </tr>
+      <tr>
+        <td>プロンプトエンジニアリングの理論</td>
+        <td><strong>「飼料単価が上がった時の損益シミュレーション」</strong>をAIに任せるプロンプト</td>
+      </tr>
+      <tr>
+        <td>AIツールの比較・選び方</td>
+        <td><strong>「Porkerのデータを使って自農場の弱点を特定する」</strong>ワークショップ</td>
+      </tr>
+      <tr>
+        <td>生成AIでブログ記事を書く</td>
+        <td><strong>「出荷予測AIで最適な出荷タイミングを判断する」</strong>実演</td>
+      </tr>
+      <tr>
+        <td>AIで業務効率化（一般論）</td>
+        <td><strong>「事故率が高い豚房のパターンをAIで発見した」</strong>先進農場の事例共有</td>
+      </tr>
+      <tr>
+        <td>E資格/G検定の試験対策</td>
+        <td><strong>「獣医師のアドバイスをAIで構造化して飼養標準に反映する」</strong>ノウハウ</td>
+      </tr>
+    </table>
+
+    <h4 style="margin:24px 0 12px;">「他に行く理由がない」状態を作る5つの仕掛け</h4>
+    <div class="gap-grid">
+      <div class="gap-card" style="border-color: var(--accent2);">
+        <h4>1. 養豚KPIダッシュボード勉強会</h4>
+        <p>月1回。Porkerデータを画面共有しながら、<strong>PSY・離乳後事故率・出荷日齢・飼料要求率</strong>等のKPIをAIで分析するライブ実演。汎用スクールでは絶対にできない。</p>
+      </div>
+      <div class="gap-card" style="border-color: var(--accent2);">
+        <h4>2. 季節別・疾病別の対策テンプレート</h4>
+        <p>「夏場の暑熱対策プロンプト集」「PED発生時の緊急対応チェックリスト」「PRRS陽転時の経営判断AI支援」等、<strong>養豚の年間カレンダーに連動した実用コンテンツ</strong>を定期配信。</p>
+      </div>
+      <div class="gap-card" style="border-color: var(--accent2);">
+        <h4>3. 匿名ベンチマーク（偏差値）</h4>
+        <p>「自分の農場は業界平均と比べてどうか？」をAIが匿名データで算出。<strong>このコミュニティに参加していないと得られない情報</strong>。AIベンチマーク構想と直結。</p>
+      </div>
+      <div class="gap-card" style="border-color: var(--accent2);">
+        <h4>4. 先進農場の「AI活用リアル」登壇</h4>
+        <p>アクエスさん等の先進農場に登壇依頼。「あの農場はAIでこうやっている」という<strong>同業者の生の声</strong>は、どんなAIスクールの講師より説得力がある。</p>
+      </div>
+      <div class="gap-card" style="border-color: var(--accent2);">
+        <h4>5. 佐藤裕次郎の「今週のAI活用」</h4>
+        <p>佐藤さんが農場長として<strong>実際にClaude Codeで何をやったか</strong>を週1でシェア。日報感覚でOK。「同じ立場の人がリアルに使っている」というライブ感が最強のコンテンツ。</p>
+      </div>
+    </div>
+
+    <div class="highlight-box highlight-red" style="margin-top:20px;">
+      <h4>やってはいけないこと</h4>
+      <ul>
+        <li><strong>汎用AIスキルを教えようとしない</strong> ── 「ChatGPTの基本」「プロンプトの書き方入門」は無料コンテンツに任せる</li>
+        <li><strong>E資格/G検定の対策をしない</strong> ── それはスキルアップAIの領域。養豚に不要</li>
+        <li><strong>AI副業・収益化の話をしない</strong> ── BrainやUdemyの領域。メンバーは養豚で忙しい</li>
+        <li><strong>網羅的なカリキュラムを作らない</strong> ── 体系的に学びたい人はAidemy等に行けばいい。ここは「養豚の現場で今すぐ使える」に集中</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ======== 示唆3: 業界ネットワーク強化 ======== -->
+  <div class="card" style="border-left: 5px solid var(--success); margin-top:30px;">
+    <h3 style="color:var(--success);">戦略3: 養豚業界ネットワークの強化 → コミュニティの「本当の価値」</h3>
+
+    <div class="highlight-box highlight-green">
+      <h4>核心: メンバーにとって最大の価値は「AIスキル」ではなく「同業者とのつながり」</h4>
+      <p>養豚業界は閉鎖的で横のつながりが少ない。農場長同士が気軽に情報交換できる場は<strong>養豚フォーラム等の年数回のイベント以外にほぼ存在しない</strong>。<br>
+      「AI」は入口（共通言語）にすぎず、本当に求められているのは<strong>同じ悩みを持つ仲間とのつながり</strong>。</p>
+    </div>
+
+    <h4 style="margin:20px 0 12px;">ネットワーク効果を最大化する設計</h4>
+
+    <div class="card-grid">
+      <div class="card" style="border:2px solid var(--success);">
+        <h3 style="font-size:0.95rem;">オンライン（日常）</h3>
+        <table style="font-size:13px;">
+          <tr>
+            <th>チャンネル</th>
+            <th>目的</th>
+          </tr>
+          <tr>
+            <td><strong>#general</strong></td>
+            <td>全体連絡・お知らせ</td>
+          </tr>
+          <tr>
+            <td><strong>#ai-tips</strong></td>
+            <td>佐藤の週1 AI活用シェア + メンバーの投稿</td>
+          </tr>
+          <tr>
+            <td><strong>#困りごと相談</strong></td>
+            <td>「うちの農場でこういう問題が…」→ 同業者がアドバイス + AIで解決策を一緒に考える</td>
+          </tr>
+          <tr>
+            <td><strong>#成績自慢</strong></td>
+            <td>「今月のPSYが○○だった！」ポジティブな情報共有。モチベーション維持</td>
+          </tr>
+          <tr>
+            <td><strong>#雑談</strong></td>
+            <td>業界ニュース、飼料価格、天候、愚痴。<strong>これが実は一番大事</strong></td>
+          </tr>
+        </table>
+        <p class="small-text mt-20">ポイント: #雑談の活性度がコミュニティの健全性のバロメーター。AI専門チャンネルだけだと堅くなりすぎる</p>
+      </div>
+
+      <div class="card" style="border:2px solid var(--success);">
+        <h3 style="font-size:0.95rem;">オフライン（定期イベント）</h3>
+        <table style="font-size:13px;">
+          <tr>
+            <th>イベント</th>
+            <th>頻度</th>
+            <th>効果</th>
+          </tr>
+          <tr>
+            <td><strong>農場相互訪問</strong></td>
+            <td>四半期1回</td>
+            <td>メンバーの農場を持ち回りで訪問。<strong>百聞は一見にしかず</strong>。訪問先のPorker活用を見学</td>
+          </tr>
+          <tr>
+            <td><strong>養豚フォーラム同行</strong></td>
+            <td>年1~2回</td>
+            <td>業界イベントにコミュニティメンバーで参加。ブース出展も視野</td>
+          </tr>
+          <tr>
+            <td><strong>忘年会/新年会</strong></td>
+            <td>年1回</td>
+            <td>関係性の深化。「仲間」になる決定的な場</td>
+          </tr>
+          <tr>
+            <td><strong>Eco-Porkオフィス見学</strong></td>
+            <td>随時</td>
+            <td>開発チームと直接対話。「共同オーナー」感の醸成</td>
+          </tr>
+        </table>
+        <p class="small-text mt-20">ポイント: オフラインで会った人とのSlackは質が変わる。年2~3回のリアル接点がコミュニティの結束力を決める</p>
+      </div>
+    </div>
+
+    <h4 style="margin:24px 0 12px;">ネットワーク強化がもたらす3つのフライホイール</h4>
+
+    <div style="background:white; border-radius:12px; padding:24px; border:1px solid var(--border); margin:16px 0;">
+      <div style="display:grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items:center; gap:12px; text-align:center;">
+        <div style="background:linear-gradient(135deg, #d4edda, #c3e6cb); border-radius:12px; padding:16px;">
+          <div style="font-size:24px; margin-bottom:4px;">1</div>
+          <strong style="font-size:13px;">メンバーが課題を共有</strong>
+          <p class="small-text">「うちの離乳後事故率が高い」</p>
+        </div>
+        <div style="font-size:24px; color:var(--success);">→</div>
+        <div style="background:linear-gradient(135deg, #cce5ff, #b8daff); border-radius:12px; padding:16px;">
+          <div style="font-size:24px; margin-bottom:4px;">2</div>
+          <strong style="font-size:13px;">同業者 + AIで解決策を発見</strong>
+          <p class="small-text">「あの農場はこう対処した」×「AIで数値分析」</p>
+        </div>
+        <div style="font-size:24px; color:var(--accent2);">→</div>
+        <div style="background:linear-gradient(135deg, #e2d6f3, #d4c5e8); border-radius:12px; padding:16px;">
+          <div style="font-size:24px; margin-bottom:4px;">3</div>
+          <strong style="font-size:13px;">成功体験が口コミに</strong>
+          <p class="small-text">「あのコミュニティで教えてもらって成績が上がった」</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:12px; font-size:14px;">
+        <span style="font-size:24px; color:var(--accent);">↺</span> 口コミで新メンバー → さらに多様な知見が集まる → さらに良い解決策が生まれる
+      </div>
+    </div>
+
+    <div style="background:white; border-radius:12px; padding:24px; border:1px solid var(--border); margin:16px 0;">
+      <h4 style="margin-bottom:12px;">養豚業界特有の「つながりの価値」</h4>
+      <table>
+        <tr>
+          <th>つながりの種類</th>
+          <th>具体例</th>
+          <th>なぜ価値があるか</th>
+        </tr>
+        <tr>
+          <td><strong>同規模農場の横つながり</strong></td>
+          <td>母豚500頭規模の農場長同士</td>
+          <td>同じ悩み（人手不足、飼料高騰）を持つ者同士のアドバイスは<strong>コンサルより実践的</strong></td>
+        </tr>
+        <tr>
+          <td><strong>大規模↔小規模の縦つながり</strong></td>
+          <td>10,000頭一貫 ↔ 500頭繁殖専門</td>
+          <td>大規模のシステム化ノウハウ、小規模の目の行き届く管理。<strong>互いに学べることが多い</strong></td>
+        </tr>
+        <tr>
+          <td><strong>地域間の情報共有</strong></td>
+          <td>北海道 ↔ 九州 ↔ 関東</td>
+          <td>地域で異なる疾病リスク、気候対策、出荷先情報。<strong>競合になりにくい距離感</strong></td>
+        </tr>
+        <tr>
+          <td><strong>世代間のつながり</strong></td>
+          <td>経験30年のベテラン ↔ 2代目若手</td>
+          <td>ベテランの暗黙知 × 若手のAI活用力。<strong>知識の世代間移転</strong></td>
+        </tr>
+        <tr>
+          <td><strong>サプライチェーン上のつながり</strong></td>
+          <td>繁殖農場 → 肥育農場 → 食肉加工</td>
+          <td>川上~川下の情報が入ることで<strong>経営判断の精度が上がる</strong></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="highlight-box highlight-gold">
+      <h4>最終的に目指す状態</h4>
+      <p style="font-size:15px; line-height:1.8;">
+        メンバーにとって、このコミュニティは<strong>「AIを学ぶ場」ではなく「養豚仲間がいる場」</strong>になる。<br><br>
+        「AIのことは分からないけど、あのコミュニティに入っていると農場経営に役立つ情報が入ってくるし、困った時に聞ける仲間がいる」<br><br>
+        この状態になれば、<strong>解約率はほぼゼロ</strong>になる。人は「ツール」は解約できるが、<strong>「仲間」は解約できない</strong>。<br>
+        そしてPorkerは「データを管理するSaaS」から<strong>「養豚業界のコミュニティインフラ」</strong>に進化する。
+      </p>
+    </div>
+  </div>
+
+  <!-- ======== 3戦略の統合マトリクス ======== -->
+  <div class="card" style="margin-top:30px;">
+    <h3>3つの戦略の統合: 「なぜこのコミュニティを辞められないか」</h3>
+    <table>
+      <tr>
+        <th style="width:200px;">ロックインの層</th>
+        <th>仕掛け</th>
+        <th>解約時に失うもの</th>
+        <th>対応戦略</th>
+      </tr>
+      <tr>
+        <td><strong>Layer 1: SaaS</strong><br><span class="tag tag-blue">Porker</span></td>
+        <td>コミュニティがPorker契約に紐づく</td>
+        <td>データ管理ツール + 蓄積データ</td>
+        <td>戦略1: 限定 × 少額</td>
+      </tr>
+      <tr>
+        <td><strong>Layer 2: スキル</strong><br><span class="tag tag-gold">養豚AI</span></td>
+        <td>養豚特化のAI活用ノウハウ</td>
+        <td>「自分の農場のデータでAIを使う」スキルの学習機会</td>
+        <td>戦略2: 養豚専門性</td>
+      </tr>
+      <tr>
+        <td><strong>Layer 3: 人脈</strong><br><span class="tag tag-green">仲間</span></td>
+        <td>養豚業界の横つながり</td>
+        <td>同業者との情報交換ネットワーク</td>
+        <td>戦略3: ネットワーク強化</td>
+      </tr>
+      <tr style="background:#fff3cd;">
+        <td><strong>3層の複合効果</strong></td>
+        <td colspan="3" style="text-align:center; font-weight:700; font-size:15px;">
+          SaaSだけなら乗り換えられる。スキルだけなら他で学べる。人脈だけなら自分で作れる。<br>
+          <span style="color:var(--accent);">3つが重なると、代替手段が存在しなくなる。</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<footer class="footer">
+  <p>養豚×AIコミュニティ構想 市場調査レポート | 2026年3月27日 | Eco-Pork DX豚舎課</p>
+  <p style="margin-top:8px; opacity:0.6;">Generated with Claude Code | Sources: Udemy, Brain, Coursera, Schoo, MENTA, ココナラ, 各スクール公式サイト, JDLA, 農水省, 各種プレスリリース</p>
+</footer>
+
+</body>
+</html>
